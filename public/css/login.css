@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+:root {
+    --primary-light: #B31B34;
+    --primary-dark: #4B0082;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --text-light: #fff;
+    --text-dark: #333;
+    --background-color: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.login-container {
+    background: rgba(106, 13, 173, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px 35px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: var(--text-light);
+    width: 90%;
+    max-width: 400px;
+    margin: 60px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    margin: 20px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+label {
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    font-size: 1em;
+    color: var(--text-dark);
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+button[name="ingresar"] {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    background: var(--primary-dark);
+    color: var(--text-light);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+button[name="ingresar"]:hover {
+    background: #3A006E;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+p {
+    margin: 25px 0 15px;
+    font-size: 0.95em;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+a > button {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-light);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s;
+}
+
+a > button:hover {
+    background: rgba(255,255,255,0.9);
+    color: var(--primary-dark);
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.1);
+}
+
+@media (max-width: 450px) {
+    .login-container {
+        padding: 30px 25px;
+        max-width: 95%;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+}

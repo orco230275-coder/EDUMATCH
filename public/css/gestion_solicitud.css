@@ -1,0 +1,174 @@
+/* ========================================= */
+/* Variables y Estilos Generales       */
+/* ========================================= */
+:root {
+    --color-principal: #5e35b1; /* Púrpura usado en encabezados y botones CANCELAR/Volver */
+    --color-secundario: #9c27b0; /* Púrpura/Magenta usado en botón ELIMINAR */
+    --color-texto-claro: #ffffff;
+    --color-fondo-claro: #f8f8f8;
+    --color-borde-gris: #e0e0e0;
+    --color-texto-oscuro: #424242;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo-claro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal del contenido (La tarjeta blanca) */
+.gestion-solicitud {
+    background-color: var(--color-texto-claro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+/* Encabezado */
+.gestion-solicitud h2 {
+    color: var(--color-principal);
+    font-size: 2em;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* ========================================= */
+/* Estilos de Tabla             */
+/* ========================================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+    text-align: left;
+}
+
+/* Cabecera de la tabla */
+table thead tr {
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    border: 1px solid var(--color-borde-gris);
+    vertical-align: middle;
+}
+
+/* Filas del cuerpo de la tabla */
+table tbody tr {
+    border-bottom: 1px solid var(--color-borde-gris);
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--color-principal);
+}
+
+/* Estilos para las celdas de fecha/hora/ID para alinear mejor */
+table td:nth-child(1), /* ID */
+table td:nth-child(4), /* Fecha */
+table td:nth-child(5), /* Inicio */
+table td:nth-child(6) { /* Fin */
+    text-align: center;
+}
+
+/* ========================================= */
+/* Estilos de Acciones y Botones    */
+/* ========================================= */
+
+/* Contenedor de las acciones (columna derecha) */
+.acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-accion {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: bold;
+    width: 100%;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+}
+
+.btn-cancelar {
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+}
+
+.btn-eliminar {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+}
+
+.btn-accion:hover {
+    filter: brightness(1.1);
+}
+
+/* Estilos para el estado (Basado en el PHP que usa status-pendiente/aceptada/rechazada) */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: normal; /* El texto en la imagen no parece negrita */
+    background-color: transparent; /* El estado en la imagen es solo texto */
+    color: initial;
+}
+
+/* Puedes añadir estilos visuales más claros para los estados si lo deseas: */
+/* .status-pendiente { color: orange; } 
+/* .status-aceptada { color: green; } 
+/* .status-rechazada { color: red; } */
+
+
+/* ========================================= */
+/* Botón "Volver"               */
+/* ========================================= */
+
+.volver-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.volver-container a {
+    text-decoration: none; /* Quitamos el subrayado del enlace */
+}
+
+.volver-container a button {
+    /* Estilo del botón */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.2s, transform 0.2s;
+
+    /* Colores similares a CANCELAR */
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+}
+
+.volver-container a button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}

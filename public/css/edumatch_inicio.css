@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a0dad, #d4145a, #f9d71c);
+    background-size: 300% 300%;
+    animation: gradientMove 8s ease infinite;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+}
+
+img.logo {
+    width: 140px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 2.3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+h1 span {
+    color: #f9d71c;
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 35px;
+    color: #fff;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background-color: #ffffff;
+    color: #6a0dad;
+}
+
+.btn-login:hover {
+    background-color: #f9d71c;
+    color: #6a0dad;
+    transform: scale(1.05);
+}
+
+.btn-register {
+    background-color: #d4145a;
+    color: #fff;
+}
+
+.btn-register:hover {
+    background-color: #f9d71c;
+    color: #6a0dad;
+    transform: scale(1.05);
+}
+
+footer {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.9em;
+    opacity: 0.9;
+    text-align: center;
+}

@@ -1,0 +1,125 @@
+/* ======== PALETA ======== */
+:root {
+    --morado: #4a0072;
+    --morado-suave: #6a1b9a;
+    --amarillo: #ffc107;
+    --rojo: #e63946;
+
+    --texto: #333;
+    --gris-claro: #f4f6f9;
+    --borde: #ddd;
+}
+
+/* ======== GENERAL ======== */
+body.horarios-disponibles {
+    background-color: var(--gris-claro);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    background: #fff;
+    width: 90%;
+    max-width: 1000px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* ======== TÍTULOS ======== */
+h2 {
+    color: var(--morado);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.usuario {
+    color: var(--rojo);
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* ======== TABLA ======== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 35px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: var(--morado);
+    color: #fff;
+    padding: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+    color: var(--texto);
+}
+
+tr:hover {
+    background: #fafafa;
+}
+
+.oculto {
+    display: none;
+}
+
+.center {
+    text-align: center;
+}
+
+/* ======== BOTONES ======== */
+.action-btn {
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.btn-send {
+    background: var(--amarillo);
+    color: #000;
+}
+
+.btn-send:hover {
+    opacity: 0.8;
+}
+
+/* ======== VOLVER ======== */
+.volver-container {
+    text-align: center;
+}
+
+.btn-back {
+    background: var(--amarillo);
+    color: #000;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    background: #e0ac05;
+}

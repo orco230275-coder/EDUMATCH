@@ -1,0 +1,145 @@
+/* ──────────── consultar_recursos.php ──────────── */
+
+:root {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #e0e0e0;
+    --text-color: #333;
+    --danger: #e53935;
+    --danger-hover: #ff4d4d;
+    --warning: #ffcc00;
+    --warning-hover: #ffd633;
+}
+
+/* GENERAL */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    text-align: center;
+    margin: 0;
+    padding: 25px;
+    color: var(--text-color);
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+/* FORMULARIO BUSQUEDA */
+form {
+    margin-bottom: 30px;
+}
+
+input[type="text"] {
+    padding: 10px 12px;
+    width: 260px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 0.95em;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* BOTONES GENERALES */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* BOTÓN VER TODOS */
+a button {
+    background-color: var(--warning);
+    color: black;
+}
+
+a button:hover {
+    background-color: var(--warning-hover);
+}
+
+/* TABLA */
+table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.95em;
+}
+
+tr:hover {
+    background-color: #efe6f7;
+}
+
+/* ACCIONES */
+.acciones {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* EDITAR */
+.acciones button {
+    background-color: var(--primary-color);
+}
+
+/* ELIMINAR */
+.eliminar-btn {
+    background-color: var(--danger);
+    color: white !important;
+}
+
+.eliminar-btn:hover {
+    background-color: var(--danger-hover);
+}
+
+/* VOLVER */
+.volver-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-top: 25px;
+}
+
+.volver-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+a {
+    text-decoration: none;
+}

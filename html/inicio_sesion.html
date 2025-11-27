@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión - EDUMATCH | UPEMOR</title>
+    <style>
+       /* Variables CSS con la paleta de colores de UPEMOR */
+        :root {
+            --color-principal: #6A057F;  /* Morado/Púrpura */
+            --color-acento-rojo: #E63946;    /* Rojo */
+            --color-acento-naranja: #FFC300;     /* Naranja/Amarillo */
+            --color-dark-hover: #4D035B; /* Morado más oscuro para hover */
+            --color-text-light: #F0F2F5; /* Texto muy claro */
+            --color-text-dark: #333333; /* Texto oscuro */
+            --color-background-header: #FFFFFF; /* Fondo del header blanco */
+        }
+
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif; /* Usamos Arial */
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-text-light);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+        }
+
+        /* 1. Encabezado y Navegación */
+        header {
+            background-color: var(--color-background-header);
+            padding: 15px 5%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--color-principal); /* Logo en Morado */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--color-acento-rojo); /* Logo a Rojo en hover */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative;
+        }
+        
+        /* Efecto de subrayado animado (Rojo) */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-acento-rojo); /* Rojo */
+            transition: width 0.3s ease-out;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-principal); /* Texto a Morado en hover */
+            transform: translateY(-2px);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+
+        /* 3. Contenedores de Interfaz (Ocultar/Mostrar) */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--color-fondo-claro) 0%, #E8EBF2 100%); 
+            min-height: calc(100vh - 80px); 
+        }
+
+        .login-card {
+            background-color: var(--color-texto-claro);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            text-align: left;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        /* Clases para animación y visibilidad */
+        .hidden { display: none; opacity: 0; transform: scale(0.95); }
+        .visible { display: block; opacity: 1; transform: scale(1); animation: fadeInScale 0.5s ease-out; }
+        
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 4. Estilos de la Interfaz de Selección de Rol (Paso 1) */
+        #role-selection h2 {
+            font-size: 2.2em;
+            color: var(--color-principal);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #role-selection p {
+            font-size: 1.1em;
+            color: var(--color-texto-oscuro);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .role-options {
+            display: grid;
+            grid-template-columns: 1fr; /* Una columna para que sean grandes y apilados */
+            gap: 20px;
+        }
+
+        .role-button {
+            padding: 20px;
+            background-color: var(--color-fondo-claro);
+            border: 2px solid var(--color-principal); /* Borde Morado */
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--color-principal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .role-button:hover {
+            background-color: var(--color-principal); /* Fondo Morado en hover */
+            color: var(--color-texto-claro); /* Texto Blanco */
+            transform: translateY(-5px); /* Efecto de levantamiento */
+            box-shadow: 0 8px 15px rgba(106, 5, 127, 0.4);
+        }
+
+        /* 5. Estilos de la Interfaz de Inicio de Sesión (Paso 2) */
+        #login-form-interface .role-title {
+            font-size: 1.5em;
+            color: var(--color-acento-rojo); /* Rojo para el rol */
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--color-texto-oscuro); font-size: 1em; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid var(--color-borde-input); border-radius: 8px; box-sizing: border-box; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-group input:focus { border-color: var(--color-principal); box-shadow: 0 0 0 3px var(--color-sombra-input); outline: none; }
+
+        .checkbox-group { margin-bottom: 30px; display: flex; align-items: center; }
+        .checkbox-group input[type="checkbox"] { margin-right: 10px; accent-color: var(--color-acento-rojo); width: 18px; height: 18px; cursor: pointer; }
+
+        .btn-login {
+            width: 100%; padding: 15px; background-color: var(--color-acento-naranja); color: var(--color-texto-oscuro); 
+            border: none; border-radius: 8px; font-size: 1.15em; font-weight: bold; cursor: pointer; 
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 195, 0, 0.4); 
+        }
+        .btn-login:hover {
+            background-color: #FFD433; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 195, 0, 0.6);
+        }
+        
+        /* Estilo para el botón de "Regresar" */
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--color-principal);
+            font-weight: 600;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .btn-back:hover {
+            color: var(--color-acento-rojo);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">EDUMATCH</a>
+        <nav>
+            <ul>
+                <li><a href="principal.html">Inicio</a></li>
+                <li><a href="registro.html">Registro</a></li>
+                <li class="nav-active"><a href="inicio_sesion.html">Iniciar sesión</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="role-selection" class="login-card visible">
+            <p class="university-title" style="text-align: center;">UNIVERSIDAD POLITÉCNICA DEL ESTADO DE MORELOS</p>
+            <h2>Bienvenido a EDUMATCH</h2>
+            <p>Selecciona tu rol para iniciar sesión:</p>
+            
+            <div class="role-options">
+                <div class="role-button" data-role="Profesor">PROFESOR</div>
+                <div class="role-button" data-role="Tutor">TUTOR</div>
+                <div class="role-button" data-role="Asesorado">ASESORADO</div>
+            </div>
+        </div>
+
+        <div id="login-form-interface" class="login-card hidden">
+            <p class="university-title" style="text-align: center;">INICIO DE SESIÓN</p>
+            <h2 id="login-title" class="role-title">ROL: ASESORADO</h2>
+
+            <form>
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@upemor.edu.mx" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Recordar contraseña</label>
+                </div>
+                <button type="submit" class="btn-login">Acceder</button>
+            </form>
+            <button class="btn-back" onclick="showRoleSelection()">← Regresar a la selección de rol</button>
+        </div>
+    </main>
+
+<script>
+    const roleSelection = document.getElementById('role-selection');
+    const loginInterface = document.getElementById('login-form-interface');
+    const loginTitle = document.getElementById('login-title');
+    const roleButtons = document.querySelectorAll('.role-button');
+
+    // 1. FUNCIÓN PARA MOSTRAR LA SELECCIÓN DE ROL (Paso 1)
+    function showRoleSelection(replaceHistory = false) {
+        loginInterface.classList.remove('visible');
+        loginInterface.classList.add('hidden');
+        
+        // Timeout para que la animación sea visible
+        setTimeout(() => {
+            roleSelection.classList.remove('hidden');
+            roleSelection.classList.add('visible');
+            
+            // Si NO estamos regresando desde el botón Atrás, añadir al historial
+            if (!replaceHistory) {
+                // Añadimos un estado para el Paso 1
+                history.pushState({ step: 1 }, "Selección de Rol", "#select-role");
+            }
+        }, 10);
+    }
+
+    // 2. FUNCIÓN PARA MOSTRAR EL FORMULARIO DE INICIO DE SESIÓN (Paso 2)
+    function showLoginForm(role) {
+        roleSelection.classList.remove('visible');
+        roleSelection.classList.add('hidden');
+        
+        loginTitle.textContent = 'INICIO DE SESIÓN: ' + role.toUpperCase();
+        
+        // Timeout para que la animación sea visible
+        setTimeout(() => {
+            loginInterface.classList.remove('hidden');
+            loginInterface.classList.add('visible');
+            
+            // AÑADIMOS UN ESTADO NUEVO AL HISTORIAL DEL NAVEGADOR
+            history.pushState({ step: 2, role: role }, "Iniciar Sesión - " + role, "#login-" + role.toLowerCase());
+        }, 10);
+    }
+
+    // 3. EVENTO PARA EL BOTÓN DE NAVEGADOR (flecha de atrás)
+    window.addEventListener('popstate', function(event) {
+        // popstate se dispara cuando el usuario usa la flecha de atrás/adelante
+        
+        // Si el estado es el Paso 1, mostramos la selección de rol.
+        if (event.state && event.state.step === 1) {
+            // Usamos 'true' para no añadir un estado de historial extra
+            showRoleSelection(true); 
+        } 
+        // Si el estado es el Paso 2, mostramos el formulario
+        else if (event.state && event.state.step === 2) {
+            showLoginForm(event.state.role, true);
+        }
+    });
+
+    // 4. LISTENERS DE LOS BOTONES DE ROL
+    roleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const role = this.getAttribute('data-role');
+            showLoginForm(role);
+        });
+    });
+
+    // 5. CONFIGURACIÓN INICIAL
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializamos el historial para que la flecha de atrás funcione
+        showRoleSelection(); 
+    });
+</script>
+
+</body>
+</html>

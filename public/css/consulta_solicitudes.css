@@ -1,0 +1,160 @@
+.consulta-solicitudes {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #e0e0e0;
+    --text-color: #333;
+}
+
+.consulta-solicitudes,
+.consulta-solicitudes body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    margin: 0;
+    padding: 40px 20px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.consulta-solicitudes .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: var(--container-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.consulta-solicitudes h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+/* FORMULARIO */
+.consulta-solicitudes form {
+    margin-bottom: 25px;
+}
+
+.consulta-solicitudes input[type="text"] {
+    padding: 10px;
+    width: 260px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.consulta-solicitudes button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.consulta-solicitudes button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* BOTÓN "VER TODOS" */
+.consulta-solicitudes .btn-ver-todos {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.consulta-solicitudes .btn-ver-todos:hover {
+    background-color: #ffd633;
+}
+
+/* TABLA */
+.consulta-solicitudes table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.consulta-solicitudes th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+.consulta-solicitudes td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.consulta-solicitudes tr:hover {
+    background-color: #f3e5f5;
+}
+
+/* ACCIONES */
+.consulta-solicitudes .acciones {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.consulta-solicitudes .btn-editar {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.consulta-solicitudes .btn-editar:hover {
+    background-color: #ffd633;
+}
+
+.consulta-solicitudes .btn-eliminar {
+    background-color: #e53935;
+    color: white;
+}
+
+.consulta-solicitudes .btn-eliminar:hover {
+    background-color: #ff4d4d;
+}
+
+/* BOTÓN VOLVER */
+
+
+.consulta-solicitudes .btn-volver {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.consulta-solicitudes .btn-volver a {
+    text-decoration: none;
+    display: inline-block;
+    max-width: 200px;
+    width: 100%;
+}
+
+.consulta-solicitudes .btn-volver button {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+.consulta-solicitudes .btn-volver button:hover {
+    background-color: var(--primary-hover);
+}

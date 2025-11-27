@@ -1,0 +1,112 @@
+/* -------- PALETA DE COLORES -------- */
+:root {
+    --morado: #6a0dad;
+    --morado-claro: #8e3be6;
+    --amarillo: #ffcc00;
+    --rojo: #e63946;
+
+    --texto: #333;
+    --borde: #ddd;
+}
+
+
+/* -------- ESTILO GENERAL -------- */
+body.editar-horario {
+    background: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--texto);
+    margin: 0;
+    padding: 0;
+}
+
+/* -------- CONTENEDOR PRINCIPAL -------- */
+.container {
+    width: 95%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff;
+    border: 2px solid var(--morado);
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.08);
+}
+
+/* -------- TÍTULO -------- */
+.container h2 {
+    text-align: center;
+    color: var(--morado);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    border-bottom: 3px solid var(--amarillo);
+    padding-bottom: 10px;
+}
+
+/* -------- FORMULARIO -------- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--morado);
+}
+
+input[type="date"],
+input[type="time"],
+select {
+    padding: 10px;
+    border: 2px solid var(--borde);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--morado);
+    outline: none;
+    box-shadow: 0 0 6px rgba(106, 13, 173, 0.4);
+}
+
+/* -------- BOTÓN ACTUALIZAR -------- */
+.btn-actualizar {
+    margin-top: 15px;
+    padding: 12px;
+    background: var(--morado);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-actualizar:hover {
+    background: var(--morado-claro);
+}
+
+/* -------- CONTENEDOR BOTÓN VOLVER -------- */
+.volver-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* -------- BOTÓN VOLVER -------- */
+.btn-volver {
+    padding: 10px 25px;
+    background: var(--rojo);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    background: #b42432;
+}

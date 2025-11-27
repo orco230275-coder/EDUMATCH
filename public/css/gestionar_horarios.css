@@ -1,0 +1,151 @@
+/* ───────── Variables de color ───────── */
+:root {
+    --morado: #6a0dad;
+    --morado-hover: #8b1cf0;
+    --amarillo: #ffdd57;
+    --amarillo-hover: #ffcc00;
+    --rojo: #e63946;
+    --rojo-hover: #c62828;
+    --fondo: #ffffff;
+    --texto: #333;
+    --borde: #e6e6e6;
+}
+
+/* ───────── Estilos generales ───────── */
+.consultar-horario {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--fondo);
+    margin: 0;
+    padding: 40px 0;
+    color: var(--texto);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ───────── Contenedor principal ───────── */
+.container {
+    background: white;
+    width: 90%;
+    max-width: 1100px;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* ───────── Títulos ───────── */
+h1 {
+    text-align: center;
+    color: var(--morado);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: var(--morado);
+    width: 60%;
+    margin: 0 auto 25px auto;
+}
+
+/* ───────── Tabla ───────── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+thead th {
+    background: var(--morado);
+    color: white;
+    padding: 14px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+tbody td {
+    padding: 14px;
+    border-bottom: 1px solid var(--borde);
+}
+
+tbody tr:hover {
+    background: #fafafa;
+}
+
+/* ───────── Botones de acciones en la tabla ───────── */
+table button {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Botón Editar */
+table a:nth-child(1) button {
+    background: var(--amarillo);
+}
+
+table a:nth-child(1) button:hover {
+    background: var(--amarillo-hover);
+}
+
+/* Botón Eliminar */
+table a:nth-child(2) button {
+    background: var(--rojo);
+    color: white;
+}
+
+table a:nth-child(2) button:hover {
+    background: var(--rojo-hover);
+}
+
+/* ───────── Botón principal (Registrar horario) ───────── */
+.main-action-button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    background: var(--morado);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.main-action-button:hover {
+    background: var(--morado-hover);
+}
+
+/* ───────── Botón Volver ───────── */
+.volver-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.back-button {
+    background: transparent;
+    color: var(--morado);
+    border: 2px solid var(--morado);
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-button:hover {
+    background: var(--morado);
+    color: white;
+}

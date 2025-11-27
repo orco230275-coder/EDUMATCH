@@ -1,0 +1,116 @@
+/* ──────────────── gestion_asesorias.css ──────────────── */
+
+.bitacora-asesorias {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #e0e0e0;
+    --text-color: #333;
+    --save-color: #28a745;
+    --save-hover: #1e7e34;
+
+    margin: 0;
+    padding: 40px 20px;
+    background-color: var(--background-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.bitacora-asesorias h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+tbody tr:hover {
+    background-color: #f0f0f5;
+}
+
+/* Formularios dentro de tabla */
+form {
+    display: contents;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-light);
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Botón Guardar */
+.acciones button {
+    background-color: var(--save-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.acciones button:hover {
+    background-color: var(--save-hover);
+}
+
+/* Botón Volver */
+.volver-container {
+    margin-top: 30px;
+}
+
+.volver-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.volver-btn:hover {
+    background-color: var(--primary-hover);
+}

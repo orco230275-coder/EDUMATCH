@@ -1,0 +1,1094 @@
+
+/* ───────── panelTutor.php ───────── */
+
+:root {
+    --primary-upemor: #4B0082;
+    --secondary-upemor: #B31B34;
+    --light-bg: #F9F9F9;
+    --text-dark: #333333;
+    --text-light: #FFFFFF;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --gradient-bg: linear-gradient(135deg, #f0e6fa, var(--light-bg));
+    --card-schedule: #007bff;
+    --card-requests: #28a745;
+    --card-bitacoras: #ffc107;
+}
+
+body.panel-tutor {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh;
+    background: var(--gradient-bg);
+    color: var(--text-dark);
+}
+
+.dashboard-layout {
+    display: flex;
+    flex-grow: 1; /* Permite que ocupe el espacio disponible entre el body y el footer */
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color: var(--light-bg);
+    box-shadow: 0 0 20px var(--shadow-medium);
+    /* IMPORTANTE: El overflow de scroll debe ir en el main-content, no aquí */
+}
+
+/* 2. PANEL LATERAL (SIDEBAR) */
+.sidebar {
+    width: 280px;
+    background-color: var(--primary-upemor);
+    color: var(--text-light);
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0 10px var(--shadow-light);
+    min-height: 100%; /* Ocupa toda la altura del dashboard-layout */
+    flex-shrink: 0; /* Evita que el sidebar se comprima */
+}
+
+.user-profile {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.user-profile .avatar {
+    width: 80px;
+    height: 80px;
+    background-color: var(--secondary-upemor);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--text-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.user-profile h1 {
+    font-size: 1.4em;
+    margin-bottom: 5px;
+    color: var(--text-light);
+    line-height: 1.3;
+}
+
+.user-profile h2 {
+    font-size: 0.9em;
+    opacity: 0.8;
+    color: var(--text-light);
+}
+
+.sidebar .menu {
+    width: 100%;
+    flex-grow: 1;
+}
+
+.sidebar .menu a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.sidebar .menu button {
+    background-color: transparent;
+    color: var(--text-light);
+    border: none;
+    padding: 15px 25px;
+    width: 100%;
+    text-align: left;
+    font-size: 1.05em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-left 0.3s ease;
+    border-left: 5px solid transparent;
+}
+
+.sidebar .menu button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left-color: var(--secondary-upemor);
+}
+
+.sidebar .logout {
+    width: 100%;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+}
+
+.sidebar .logout button {
+    background-color: var(--secondary-upemor);
+    color: var(--text-light);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar .logout button:hover {
+    background-color: #9c182f;
+    transform: translateY(-2px);
+}
+
+/* 3. ÁREA DE CONTENIDO PRINCIPAL */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: #FFFFFF;
+    overflow-y: auto; /* PERMITE EL SCROLL VERTICAL */
+}
+
+.main-content h1.welcome-title {
+    color: var(--primary-upemor);
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    font-weight: 800;
+}
+
+.main-content p.role-info {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+/* 4. TARJETAS (CARDS) */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #EEE;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+.card h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card p.value {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 5px 0 10px;
+}
+
+.card p.description {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Colores de acento para cada tarjeta */
+.card.schedule h3, .card.schedule p.value { color: var(--card-schedule); }
+.card.requests h3, .card.requests p.value { color: var(--card-requests); }
+.card.bitacoras h3, .card.bitacoras p.value { color: var(--secondary-upemor); }
+
+/* 5. FOOTER */
+footer {
+    text-align: center;
+    padding: 15px 20px;
+    color: var(--primary-upemor);
+    background-color: var(--text-light);
+    font-size: 0.9em;
+    width: 100%;
+    flex-shrink: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 992px) {
+    .dashboard-layout {
+        flex-direction: column;
+        margin: 0;
+        box-shadow: none;
+    }
+    .sidebar {
+        width: 100%;
+        padding: 20px;
+        min-height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px var(--shadow-light);
+    }
+    .user-profile {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        text-align: left;
+    }
+    .user-profile .avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 1.8em;
+        margin: 0 15px 0 0;
+    }
+    .user-profile h1 {
+        font-size: 1.1em;
+    }
+    .user-profile h2, .sidebar .menu {
+        display: none; 
+    }
+    .sidebar .logout {
+        border-top: none;
+        padding: 0;
+        margin-top: 0;
+        width: auto;
+    }
+    .sidebar .logout button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .main-content {
+        padding: 30px 20px;
+    }
+}
+
+/* ───────── gestion_horarios.php ───────── */
+
+body.gestion-horarios {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --success-color: #28a745; 
+    --success-hover: #1e7e34;
+    --secondary-color: #007bff;
+    --secondary-hover: #0056b3;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #e0e0e0;
+    --text-color: #333;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px;
+}
+
+body.gestion-horarios .form-container {
+    background: var(--container-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+body.gestion-horarios h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-align: center;
+}
+
+body.gestion-horarios form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+body.gestion-horarios label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+body.gestion-horarios input[type="date"],
+body.gestion-horarios input[type="time"],
+body.gestion-horarios select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+body.gestion-horarios input:focus,
+body.gestion-horarios select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+body.gestion-horarios button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+body.gestion-horarios .submit-btn {
+    background-color: var(--success-color);
+    color: white;
+}
+
+body.gestion-horarios .submit-btn:hover {
+    background-color: var(--success-hover);
+}
+
+body.gestion-horarios .secondary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+body.gestion-horarios .secondary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ───────── consultBitacoraProf.php ───────── */
+
+.gestion-consult-bitacora-prof {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #ddd;
+    --text-color: #333;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    margin: 0;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.gestion-consult-bitacora-prof h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.gestion-consult-bitacora-prof .table-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.gestion-consult-bitacora-prof table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.gestion-consult-bitacora-prof th,
+.gestion-consult-bitacora-prof td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-light);
+    text-align: left;
+}
+
+.gestion-consult-bitacora-prof th {
+    background-color: var(--primary-color);
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+}
+
+.gestion-consult-bitacora-prof tbody tr:hover {
+    background-color: #f3e5f5;
+}
+
+.gestion-consult-bitacora-prof .volver-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-top: 30px;
+    transition: 0.3s ease;
+}
+
+.gestion-consult-bitacora-prof .volver-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+
+
+/*editPremio.php)*/
+
+.edit-premio {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #e0e0e0;
+    --text-color: #333;
+    --update-color: #007bff;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--text-color);
+}
+
+/************ CONTENEDOR ************/
+.edit-premio .container {
+    background-color: var(--container-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.edit-premio h1 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    word-break: break-word;
+}
+
+.edit-premio hr {
+    border: 0;
+    border-top: 1px solid var(--border-light);
+    margin: 0 0 30px 0;
+}
+
+/************ FORMULARIO ************/
+.edit-premio form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-premio label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.edit-premio input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.edit-premio input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/************ ACCIONES ************/
+.edit-premio .actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.edit-premio button,
+.edit-premio .button-link {
+    flex: 1;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+/************ BOTÓN MODIFICAR ************/
+.edit-premio .update-button {
+    background-color: var(--update-color);
+    color: white;
+}
+
+.edit-premio .update-button:hover {
+    background-color: #0056b3;
+}
+
+/************ BOTÓN CANCELAR ************/
+.edit-premio .cancel-button {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.edit-premio .cancel-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+/* editRecurso.php */
+
+.edit-recurso-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.edit-recurso-title {
+    color: #6a0dad;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    word-break: break-word;
+}
+
+.edit-recurso-form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-recurso-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.edit-recurso-input,
+.edit-recurso-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.edit-recurso-input:focus,
+.edit-recurso-select:focus {
+    border-color: #6a0dad;
+    outline: none;
+}
+
+.edit-recurso-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.edit-recurso-submit {
+    flex: 1;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #28a745;
+    color: white;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+.edit-recurso-submit:hover {
+    background-color: #1e7e34;
+}
+
+.edit-recurso-cancel {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #6a0dad;
+    color: #6a0dad;
+    text-decoration: none;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+}
+
+.edit-recurso-cancel:hover {
+    background-color: #6a0dad;
+    color: white;
+}
+
+
+/*form_insert2.php*/
+
+
+:root {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #e0e0e0;
+    --text-color: #333;
+    --button-text: white;
+    --error-color: #dc3545;
+}
+
+/* ======== GENERAL ======== */
+.registro-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 20px;
+}
+
+.registro-title {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+/* ======== FORMULARIO ======== */
+.registro-form {
+    background: var(--container-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
+    width: 90%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color .3s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* ======== CAMPOS OCULTOS ======== */
+.campo-rol {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 15px;
+    margin-top: 10px;
+    transition: opacity .3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ======== BOTONES ======== */
+.btn-principal {
+    background-color: var(--primary-color);
+    color: var(--button-text);
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+    transition: .3s;
+}
+
+.btn-principal:hover {
+    background-color: var(--primary-hover);
+}
+
+.button-group {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 450px;
+}
+
+.button-link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.back-button {
+    border: 2px solid var(--border-light);
+    color: var(--text-color);
+    background: transparent;
+}
+
+.back-button:hover {
+    background: var(--border-light);
+}
+
+
+/* ───────── form_insert2.php ───────── */
+.form-insert2 {
+    --primary-color: #6a0dad;
+    --primary-hover: #8b1cf0;
+    --background-light: #f9f9ff;
+    --container-bg: #ffffff;
+    --border-light: #e0e0e0;
+    --text-color: #333;
+    --button-text: white;
+    --error-color: #dc3545;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.form-insert2 h1 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.form-insert2 form {
+    background: var(--container-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-insert2 label {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    color: #555;
+}
+
+.form-insert2 input,
+.form-insert2 select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-insert2 input:focus,
+.form-insert2 select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Campos condicionales */
+.form-insert2 .campo-rol {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 15px;
+    margin-top: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Botones */
+.form-insert2 .button-group {
+    margin-top: 30px;
+    width: 90%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-insert2 input[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--button-text);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.form-insert2 input[type="submit"]:hover {
+    background-color: var(--primary-hover);
+}
+
+.form-insert2 .back-button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--border-light);
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.form-insert2 .back-button:hover {
+    background-color: var(--border-light);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+/* ───────── consult.php ───────── */
+
+/* Configuración del fondo de la página */
+body.consultar-usuarios {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* Fondo muy claro */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 95%; /* Máximo ancho del contenedor */
+    width: 100%;
+    margin-bottom: 20px;
+    /* Esto es crucial para la tabla: permite el desplazamiento horizontal */
+    overflow-x: auto;
+}
+
+.container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.container hr {
+    border: none;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-bottom: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    /* Asegura un ancho mínimo para la tabla si tiene muchas columnas */
+    min-width: 1000px;
+}
+
+/* Encabezados de la tabla (Header) */
+thead {
+    background-color: #5b21b6; /* Morado intenso como en la imagen */
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+th {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #4a1c96;
+}
+
+/* Filas del cuerpo de la tabla (Body Rows) */
+tbody tr {
+    border-bottom: 1px solid #eeeeee;
+    transition: background-color 0.2s;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Sombreado sutil para filas pares */
+}
+
+tbody tr:hover {
+    background-color: #e6e6fa; /* Efecto hover */
+}
+
+td {
+    padding: 10px 15px;
+    text-align: left;
+    color: #333;
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    font-size: 0.9em;
+    /* Para que el texto largo en celdas no rompa el diseño tan fácilmente */
+    word-wrap: break-word;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    min-width: 180px;
+}
+
+.action-buttons a {
+    text-decoration: none;
+}
+
+.btn-editar, .btn-eliminar {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+.btn-editar {
+    background-color: #3b82f6; /* Azul */
+}
+
+.btn-editar:hover {
+    background-color: #2563eb;
+}
+
+.btn-eliminar {
+    background-color: #ef4444; /* Rojo */
+}
+
+.btn-eliminar:hover {
+    background-color: #dc2626;
+}
+
+/* Estilo para el botón "Regresar" */
+.regresar-btn {
+    background-color: #5b21b6; /* Morado intenso, a juego con la cabecera */
+    color: #ffffff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.1s;
+    margin-top: 20px; /* Separación del resto del contenido */
+}
+
+.regresar-btn:hover {
+    background-color: #4a1c96;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .container h1 {
+        font-size: 1.5em;
+    }
+
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+}
+
+
+/* ───────── gestion_solicitud.php ───────── */

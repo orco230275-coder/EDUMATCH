@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios | EDUMATCH </title>
+    <style>
+        /* Variables CSS para los colores */
+        :root {
+            --color-principal: #6A057F;  /* Morado/Púrpura */
+            --color-acento-naranja: #FFC300;     /* Naranja/Amarillo (Botones) */
+            --color-acento-rojo: #E63946;    /* Rojo */
+            --color-fondo-claro: #F8F4F9;
+            --color-texto-oscuro: #333333;
+            --color-texto-claro: #FFFFFF;
+            --color-borde-input: #CED4DA;
+            --color-sombra-input: rgba(106, 5, 127, 0.2); 
+        }
+
+        /* 1. Estilos Generales y Header */
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: var(--color-fondo-claro); line-height: 1.6; }
+
+        header { background-color: var(--color-texto-claro); padding: 15px 5%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.8em; font-weight: bold; color: var(--color-principal); text-decoration: none; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: var(--color-texto-oscuro); font-weight: 500; padding: 8px 12px; border-radius: 5px; transition: color 0.3s ease; }
+        .nav-active a { color: var(--color-principal); font-weight: bold; border-bottom: 2px solid var(--color-principal); }
+        nav ul li a:hover { color: var(--color-principal); }
+
+        /* 2. Contenido Principal y Contenedor de Tarjeta */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, var(--color-fondo-claro) 0%, #E8EBF2 100%); 
+            min-height: calc(100vh - 80px); 
+        }
+
+        .register-card {
+            background-color: var(--color-texto-claro);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px; 
+            text-align: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        /* Clases para animación y visibilidad */
+        .hidden { display: none; opacity: 0; transform: scale(0.95); }
+        .visible { display: block; opacity: 1; transform: scale(1); animation: fadeInScale 0.5s ease-out; }
+        
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 3. Estilos de la Interfaz de Selección de Rol (Paso 1) */
+        #role-selection h2 {
+            font-size: 2.2em;
+            color: var(--color-principal);
+            margin-bottom: 10px;
+        }
+
+        #role-selection p {
+            font-size: 1.1em;
+            color: var(--color-texto-oscuro);
+            margin-bottom: 40px;
+        }
+
+        .role-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .role-button {
+            padding: 20px;
+            background-color: var(--color-fondo-claro);
+            border: 2px solid var(--color-principal); 
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--color-principal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .role-button:hover {
+            background-color: var(--color-principal); 
+            color: var(--color-texto-claro); 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 15px rgba(106, 5, 127, 0.4);
+        }
+
+        /* 4. Estilos del Formulario de Registro (Paso 2) */
+        #registration-interface { text-align: left; }
+        
+        #registration-interface .role-title {
+            font-size: 1.8em;
+            color: var(--color-acento-rojo); /* Rojo para el rol */
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        /* Estilos de los campos del formulario */
+        .form-section-title {
+            color: var(--color-principal);
+            font-weight: bold;
+            font-size: 1.1em;
+            border-bottom: 2px solid var(--color-borde-input);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px;
+        }
+        .form-row.full-width > div { grid-column: 1 / -1; }
+        
+        .form-label { display: block; margin-bottom: 5px; font-weight: 600; color: var(--color-texto-oscuro); font-size: 0.95em; }
+        .form-input { width: 100%; padding: 10px; border: 1px solid var(--color-borde-input); border-radius: 4px; box-sizing: border-box; }
+        .form-input:focus { border-color: var(--color-principal); box-shadow: 0 0 0 3px var(--color-sombra-input); outline: none; }
+
+        /* Checkbox y Botón de Envío */
+        .checkbox-group { margin-top: 20px; margin-bottom: 30px; display: flex; align-items: center; }
+        .checkbox-group input[type="checkbox"] { margin-right: 10px; accent-color: var(--color-principal); width: 18px; height: 18px; cursor: pointer; }
+
+        .btn-submit {
+            width: 100%; padding: 15px; background-color: var(--color-acento-naranja); color: var(--color-texto-oscuro); 
+            border: none; border-radius: 8px; font-size: 1.15em; font-weight: bold; cursor: pointer; 
+            transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(255, 195, 0, 0.4); 
+        }
+        .btn-submit:hover { background-color: #FFD433; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 195, 0, 0.6); }
+
+        .btn-back { background: none; border: none; color: var(--color-principal); font-weight: 600; margin-top: 15px; cursor: pointer; transition: color 0.2s ease; }
+        .btn-back:hover { color: var(--color-acento-rojo); }
+        
+        .login-link { text-align: center; margin-top: 20px; font-size: 0.95em; }
+        .login-link a { color: var(--color-principal); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+        .login-link a:hover { color: var(--color-acento-rojo); text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">EDUMATCH</a>
+        <nav>
+            <ul>
+                <li><a href="principal.html">Inicio</a></li>
+                <li class="nav-active"><a href="registro.html">Registro</a></li>
+                <li><a href="inicio_sesion.html">Iniciar sesión</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="role-selection" class="register-card visible">
+            <p class="university-title" style="text-align: center;">UNIVERSIDAD POLITÉCNICA DEL ESTADO DE MORELOS</p>
+            <h2>REGISTRO DE USUARIOS</h2>
+            <p>Selecciona tu rol para registrarte:</p>
+            
+            <div class="role-options">
+                <div class="role-button" data-role="Profesor">PROFESOR</div>
+                <div class="role-button" data-role="Tutor">TUTOR</div>
+                <div class="role-button" data-role="Asesorado">ASESORADO</div>
+            </div>
+        </div>
+
+        <div id="registration-interface" class="register-card hidden">
+            <h2 id="registration-title" class="role-title">REGISTRO COMO: ASESORADO</h2>
+
+            <form id="registration-form">
+                </form>
+            
+            <button class="btn-back" onclick="showRoleSelection()">← Regresar a la selección de rol</button>
+            
+            <div class="login-link">
+                ¿Ya tienes cuenta? <a href="inicio_sesion.html">Accede al inicio de sesión</a>.
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Funciones y lógica para manejar la transición y los campos dinámicos
+        
+        const roleSelection = document.getElementById('role-selection');
+        const registrationInterface = document.getElementById('registration-interface');
+        const registrationTitle = document.getElementById('registration-title');
+        const registrationForm = document.getElementById('registration-form');
+        const roleButtons = document.querySelectorAll('.role-button');
+
+        // --- DEFINICIÓN DE CAMPOS POR ROL ---
+        const commonFields = `
+            <div class="form-row full-width">
+                <label for="correo" class="form-label">Correo institucional:</label>
+                <input type="email" id="correo" name="correo" class="form-input" placeholder="ejemplo@upemor.edu.mx" required>
+            </div>
+            <div class="form-row full-width">
+                <label for="contrasena" class="form-label">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" class="form-input" placeholder="Crea una contraseña segura" required>
+            </div>
+        `;
+
+        const profesorFields = `
+            <div class="form-row">
+                <div>
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-input" required>
+                </div>
+                <div>
+                    <label for="apellido-paterno" class="form-label">Apellido paterno:</label>
+                    <input type="text" id="apellido-paterno" name="apellido-paterno" class="form-input" required>
+                </div>
+            </div>
+            <div class="form-row full-width">
+                <div>
+                    <label for="apellido-materno" class="form-label">Apellido materno:</label>
+                    <input type="text" id="apellido-materno" name="apellido-materno" class="form-input" required>
+                </div>
+            </div>
+            <div class="form-row full-width">
+                <label for="matricula" class="form-label">ID de Profesor:</label>
+                <input type="text" id="matricula" name="matricula" class="form-input" required>
+            </div>
+            ${commonFields}
+        `;
+
+        const tutorAsesoradoFields = `
+            <div class="form-row">
+                <div>
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-input" required>
+                </div>
+                <div>
+                    <label for="apellido-paterno" class="form-label">Apellido paterno:</label>
+                    <input type="text" id="apellido-paterno" name="apellido-paterno" class="form-input" required>
+                </div>
+            </div>
+            <div class="form-row full-width">
+                <div>
+                    <label for="apellido-materno" class="form-label">Apellido materno:</label>
+                    <input type="text" id="apellido-materno" name="apellido-materno" class="form-input" required>
+                </div>
+            </div>
+            <div class="form-row full-width">
+                <label for="matricula" class="form-label">Matrícula:</label>
+                <input type="text" id="matricula" name="matricula" class="form-input" required>
+            </div>
+            ${commonFields}
+        `;
+
+        // --- LÓGICA DE TRANSICIÓN ---
+
+        function showRoleSelection() {
+            registrationInterface.classList.remove('visible');
+            registrationInterface.classList.add('hidden');
+            setTimeout(() => {
+                roleSelection.classList.remove('hidden');
+                roleSelection.classList.add('visible');
+                // Al regresar, limpiamos el formulario por si acaso
+                registrationForm.innerHTML = '';
+            }, 10);
+        }
+
+        function showRegistrationForm(role) {
+            roleSelection.classList.remove('visible');
+            roleSelection.classList.add('hidden');
+            
+            registrationTitle.textContent = 'REGISTRO COMO: ' + role.toUpperCase();
+            
+            let fieldsHtml = '';
+            if (role === 'Profesor') {
+                fieldsHtml = profesorFields;
+            } else if (role === 'Tutor' || role === 'Asesorado') {
+                fieldsHtml = tutorAsesoradoFields;
+            }
+
+            // Insertar campos dinámicamente
+            registrationForm.innerHTML = `
+                ${fieldsHtml}
+                <div class="checkbox-group">
+                    <input type="checkbox" id="acepto-terminos" name="acepto-terminos" required>
+                    <label for="acepto-terminos">Estoy de acuerdo con enviar la información.</label>
+                </div>
+                <button type="submit" class="btn-submit">Registrarme</button>
+            `;
+
+            setTimeout(() => {
+                registrationInterface.classList.remove('hidden');
+                registrationInterface.classList.add('visible');
+            }, 10);
+        }
+
+        // Event Listeners
+        roleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const role = this.getAttribute('data-role');
+                showRegistrationForm(role);
+            });
+        });
+
+    </script>
+
+</body>
+</html>
